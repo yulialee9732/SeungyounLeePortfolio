@@ -87,3 +87,4 @@ Update the social media links in `src/components/Navbar.tsx`.
 # SeungyounLeePortfolio
 # SeungyounLeePortfolio
 # SeungyounLeePortfolio
+# SeungyounLeePortfolio
