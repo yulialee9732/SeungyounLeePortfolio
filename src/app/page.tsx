@@ -755,7 +755,7 @@ export default function Home() {
       <ResumeModal
         isOpen={resumeOpen}
         onClose={() => setResumeOpen(false)}
-        resumeImage="/seungyounLeeResume.png"
+        resumeImage="/resume.png"
         resumePdf="/seungyounLeeResume.pdf"
       />
     </main>

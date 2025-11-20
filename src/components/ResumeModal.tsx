@@ -122,19 +122,20 @@ export default function ResumeModal({ isOpen, onClose, resumeImage, resumePdf }:
               exit={{ scale: 0.95 }}
               className="bg-white rounded-lg shadow-2xl overflow-auto"
               style={{
-                width: `${500 * zoom}px`,
-                height: `${650 * zoom}px`,
+                width: `${700 * zoom}px`,
+                height: `${900 * zoom}px`,
                 maxWidth: '90vw',
                 maxHeight: '90vh',
               }}
               onClick={(e) => e.stopPropagation()}
             >
               {resumeImage ? (
-                <div className="flex items-center justify-center p-4">
+                <div className="w-full h-full flex items-start justify-center overflow-auto p-4">
                   <img
                     src={resumeImage}
                     alt="Resume"
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto"
+                    style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}
                   />
                 </div>
               ) : (
