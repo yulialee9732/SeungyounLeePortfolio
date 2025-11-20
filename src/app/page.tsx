@@ -78,7 +78,7 @@ export default function Home() {
       } else {
         setFormStatus('error');
       }
-    } catch (_error) {
+    } catch {
       setFormStatus('error');
     }
   };
