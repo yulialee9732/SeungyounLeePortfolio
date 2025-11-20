@@ -5,13 +5,10 @@ import Navbar from '@/components/Navbar';
 import Typewriter from '@/components/Typewriter';
 import ResumeModal from '@/components/ResumeModal';
 
-const mockProjects = [];
-
 export default function Home() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [activeProjectTab, setActiveProjectTab] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState('');
   const [dragStart, setDragStart] = useState(0);
@@ -61,17 +58,6 @@ export default function Home() {
     },
   ];
 
-  const handleTabClick = (projectId: number) => {
-    setActiveProjectTab(projectId);
-    setCurrentSlide(0); // Reset slide when switching projects
-    const contentElement = document.getElementById('project-content');
-    if (contentElement) {
-      const yOffset = -140; // Account for sticky tabs height
-      const y = contentElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'auto' });
-    }
-  };
-
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('sending');
@@ -92,7 +78,7 @@ export default function Home() {
       } else {
         setFormStatus('error');
       }
-    } catch (error) {
+    } catch (_error) {
       setFormStatus('error');
     }
   };
