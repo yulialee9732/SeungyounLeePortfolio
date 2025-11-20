@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     }
 
     await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'Portfolio Contact <onboarding@resend.dev>',
       to: 'leeyulia150@gmail.com',
       subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
@@ -70,7 +70,8 @@ export async function POST(request: Request) {
     fs.appendFileSync(filePath, csvLine);
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    console.error('Error sending email:', error);
     return NextResponse.json(
       { error: 'Failed to send email' },
       { status: 500 }
