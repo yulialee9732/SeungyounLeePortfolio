@@ -3,12 +3,18 @@
 import { motion } from 'framer-motion';
 
 interface ProjectDetailModalProps {
-  project: any;
   isOpen: boolean;
   onClose: () => void;
+  project: {
+    id: number;
+    name: string;
+    description: string;
+    technologies: string[];
+    github?: string;
+  } | null;
 }
 
-export default function ProjectDetailModal({ project, isOpen, onClose }: ProjectDetailModalProps) {
+export default function ProjectDetailModal({ isOpen, onClose, project }: ProjectDetailModalProps) {
   if (!isOpen || !project) return null;
 
   return (
@@ -17,7 +23,6 @@ export default function ProjectDetailModal({ project, isOpen, onClose }: Project
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={onClose}
         className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
       />
       <motion.div
