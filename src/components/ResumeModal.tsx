@@ -62,25 +62,25 @@ export default function ResumeModal({ isOpen, onClose, resumeImage, resumePdf }:
           >
             {/* Top Right Controls */}
             <div
-              className="absolute top-8 right-8 flex items-center gap-6 z-50 text-lg font-medium"
+              className="absolute top-20 right-20 flex items-center gap-6 z-50 text-lg font-medium text-white"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={handlePrint}
-                className="hover:text-gray-700 transition"
+                className="hover:text-gray-300 transition"
               >
                 Print
               </button>
               <span>|</span>
               <button
                 onClick={handleDownload}
-                className="hover:text-gray-700 transition"
+                className="hover:text-gray-300 transition"
               >
                 Download
               </button>
               <button
                 onClick={onClose}
-                className="text-2xl hover:text-gray-700 transition ml-2"
+                className="text-2xl hover:text-gray-300 transition ml-2"
               >
                 ✕
               </button>
@@ -88,27 +88,27 @@ export default function ResumeModal({ isOpen, onClose, resumeImage, resumePdf }:
 
             {/* Right Side Zoom Controls */}
             <div
-              className="absolute right-12 top-1/2 transform -translate-y-1/2 flex flex-col items-center gap-6 z-50"
+              className="absolute right-12 top-1/2 transform -translate-y-1/2 flex flex-col items-center gap-6 z-50 text-white"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Zoom In */}
               <button
                 onClick={handleZoomIn}
-                className="text-3xl hover:text-gray-700 transition"
+                className="text-3xl hover:text-gray-300 transition"
                 title="Zoom in"
               >
                 ⊕
               </button>
 
               {/* Zoom Percentage */}
-              <div className="text-lg font-semibold bg-white px-4 py-2 rounded border border-gray-300">
+              <div className="text-lg font-semibold bg-white text-black px-4 py-2 rounded border border-gray-300">
                 {Math.round(zoom * 100)}%
               </div>
 
               {/* Zoom Out */}
               <button
                 onClick={handleZoomOut}
-                className="text-3xl hover:text-gray-700 transition"
+                className="text-3xl hover:text-gray-300 transition"
                 title="Zoom out"
               >
                 ⊖

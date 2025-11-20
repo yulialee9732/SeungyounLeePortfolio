@@ -11,37 +11,28 @@ export default function Typewriter({ titles, interval = 3000 }: TypewriterProps)
   const [displayText, setDisplayText] = useState('');
   const [titleIndex, setTitleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const currentTitle = titles[titleIndex];
     let timeout: NodeJS.Timeout;
 
-    if (!isDeleting && charIndex < currentTitle.length) {
+    if (charIndex < currentTitle.length) {
       // Typing
       timeout = setTimeout(() => {
         setDisplayText(currentTitle.slice(0, charIndex + 1));
         setCharIndex(charIndex + 1);
       }, 50);
-    } else if (isDeleting && charIndex > 0) {
-      // Deleting
+    } else if (charIndex === currentTitle.length) {
+      // Finished typing current title, wait before moving to next
       timeout = setTimeout(() => {
-        setDisplayText(currentTitle.slice(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-      }, 30);
-    } else if (!isDeleting && charIndex === currentTitle.length) {
-      // Finished typing, wait before deleting
-      timeout = setTimeout(() => {
-        setIsDeleting(true);
+        setTitleIndex((prev) => (prev + 1) % titles.length);
+        setCharIndex(0);
+        setDisplayText('');
       }, interval);
-    } else if (isDeleting && charIndex === 0) {
-      // Finished deleting, move to next title
-      setIsDeleting(false);
-      setTitleIndex((prev) => (prev + 1) % titles.length);
     }
 
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, titleIndex, titles, interval]);
+  }, [charIndex, titleIndex, titles, interval]);
 
   return (
     <h1 className="text-4xl md:text-6xl font-bold text-black text-left">

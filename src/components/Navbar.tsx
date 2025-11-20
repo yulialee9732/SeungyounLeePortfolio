@@ -20,8 +20,14 @@ export default function Navbar({ sections, onResumeClick, activeSection }: Navba
     setMobileMenuOpen(false);
   };
 
+  // Determine background based on active section
+  const isHomeSection = activeSection === 'home';
+  const navBgClass = isHomeSection 
+    ? 'bg-transparent backdrop-blur-sm' 
+    : 'bg-white backdrop-blur-sm';
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-30 bg-transparent backdrop-blur-sm">
+    <nav className={`fixed top-0 left-0 right-0 z-30 ${navBgClass} transition-colors duration-300`}>
       <div className="px-[200px]">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Navigation Links - Desktop */}
@@ -49,14 +55,17 @@ export default function Navbar({ sections, onResumeClick, activeSection }: Navba
 
           {/* Social Links & Resume */}
           <div className="hidden md:flex gap-4 items-center">
-            <Link href="https://github.com" target="_blank" className="text-black hover:text-gray-600 transition">
+            <Link href="https://github.com/yulialee9732" target="_blank" className="text-black hover:text-gray-600 transition">
               <i className="fab fa-github text-2xl"></i>
             </Link>
-            <Link href="https://linkedin.com" target="_blank" className="text-black hover:text-gray-600 transition">
+            <Link href="https://www.linkedin.com/in/leeseung217" target="_blank" className="text-black hover:text-gray-600 transition">
               <i className="fab fa-linkedin text-2xl"></i>
             </Link>
-            <Link href="https://instagram.com" target="_blank" className="text-black hover:text-gray-600 transition">
+            <Link href="https://www.instagram.com/dlyulya/" target="_blank" className="text-black hover:text-gray-600 transition">
               <i className="fab fa-instagram text-2xl"></i>
+            </Link>
+            <Link href="mailto:leeyulia150@gmail.com" className="text-black hover:text-gray-600 transition">
+              <i className="fas fa-envelope text-2xl"></i>
             </Link>
             <button
               onClick={onResumeClick}
@@ -88,14 +97,17 @@ export default function Navbar({ sections, onResumeClick, activeSection }: Navba
               </button>
             ))}
             <div className="flex gap-2 px-2 py-2 text-sm">
-              <Link href="https://github.com" target="_blank" className="nav-social-icon transition">
+              <Link href="https://github.com/yulialee9732" target="_blank" className="nav-social-icon transition">
                 <i className="fi fi-brands-github text-lg"></i>
               </Link>
-              <Link href="https://linkedin.com" target="_blank" className="nav-social-icon transition">
+              <Link href="https://www.linkedin.com/in/leeseung217" target="_blank" className="nav-social-icon transition">
                 <i className="fab fa-linkedin text-lg"></i>
               </Link>
-              <Link href="https://instagram.com" target="_blank" className="nav-social-icon transition">
+              <Link href="https://www.instagram.com/dlyulya/" target="_blank" className="nav-social-icon transition">
                 <i className="fi fi-brands-instagram text-lg"></i>
+              </Link>
+              <Link href="mailto:leeyulia150@gmail.com" className="nav-social-icon transition">
+                <i className="fas fa-envelope text-lg"></i>
               </Link>
             </div>
             <button

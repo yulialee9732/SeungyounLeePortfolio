@@ -56,7 +56,7 @@ export default function ProjectGallery({ projects, onProjectClick }: ProjectGall
   }, [currentIndex]);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center">
       {/* Gallery */}
       <div
         ref={containerRef}
@@ -64,7 +64,7 @@ export default function ProjectGallery({ projects, onProjectClick }: ProjectGall
         onMouseUp={handleDragEnd}
         onTouchStart={handleDragStart}
         onTouchEnd={handleDragEnd}
-        className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 pb-4"
+        className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 pb-4 w-full justify-center"
         style={{
           scrollBehavior: 'smooth',
           userSelect: 'none',
@@ -76,7 +76,7 @@ export default function ProjectGallery({ projects, onProjectClick }: ProjectGall
             className="flex-shrink-0 w-full md:w-2/3 snap-center cursor-pointer group"
             onClick={() => onProjectClick(project)}
           >
-            <div className="bg-gray-200 rounded-lg overflow-hidden h-96 relative">
+            <div className="bg-gray-200 overflow-hidden h-96 relative">
               <img
                 src={project.image}
                 alt={project.title}
