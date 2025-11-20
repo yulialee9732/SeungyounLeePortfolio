@@ -59,15 +59,20 @@ export async function POST(request: Request) {
     recentSubmissions.push(now);
     submissions.set(email, recentSubmissions);
 
-    const timestamp = new Date().toISOString();
-    const csvLine = `"${timestamp}","${name.replace(/"/g, '""')}","${email.replace(/"/g, '""')}","${message.replace(/"/g, '""').replace(/\n/g, ' ')}"\n`;
-    const filePath = path.join(process.cwd(), 'contact-submissions.csv');
+    // Try to log to CSV (will fail on serverless environments like Vercel)
+    try {
+      const timestamp = new Date().toISOString();
+      const csvLine = `"${timestamp}","${name.replace(/"/g, '""')}","${email.replace(/"/g, '""')}","${message.replace(/"/g, '""').replace(/\n/g, ' ')}"\n`;
+      const filePath = path.join(process.cwd(), 'contact-submissions.csv');
 
-    if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, 'Timestamp,Name,Email,Message\n');
+      if (!fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, 'Timestamp,Name,Email,Message\n');
+      }
+
+      fs.appendFileSync(filePath, csvLine);
+    } catch (error) {
+      console.log('CSV logging failed (expected on serverless):', error);
     }
-
-    fs.appendFileSync(filePath, csvLine);
 
     return NextResponse.json({ success: true });
   } catch (error) {
